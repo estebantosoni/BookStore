@@ -38,6 +38,11 @@ namespace BulkyWeb
                 options.AppId = builder.Configuration.GetSection("Facebook:Id").Get<string>();
                 options.AppSecret = builder.Configuration.GetSection("Facebook:SecretKey").Get<string>();
             });
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = builder.Configuration.GetSection("Google:ClientId").Get<string>();
+                options.ClientSecret = builder.Configuration.GetSection("Google:ClientSecret").Get<string>();
+            });
 
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
