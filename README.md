@@ -2,7 +2,7 @@
 This project is made with .NET 7, but has support for .NET 8. It is a layered project that uses ASP.NET Core MVC, the repository pattern, and is connected to SQL Server.
 
 ## Database:
-Thanks to EntityFramework Core, when you run the project, the database is automatically generated with all its tables, fields and a default admin. Before running the project, make sure to add your server name to the connection string within the appsettings.json file.
+Thanks to EntityFramework Core, when you run the project, the database is automatically generated with all its tables, fields and a default admin. Before running the project, make sure to add your server name to the connection string of the ```appsettings.json``` file (inside of BulkyWeb).
 
 ## External services:
 On the one hand, Stripe is used to simulate payments. On the other hand, Facebook and Google are used to authenticate users.
