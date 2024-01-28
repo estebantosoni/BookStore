@@ -158,7 +158,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 .GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
             //stripe configuration
-            //create a session
+                //create a session
             var domain = "https://localhost:7214/";
             var options = new SessionCreateOptions
             {
@@ -197,8 +197,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         }
 
-        //[HttpPost]
-        //[Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
         public IActionResult PaymentConfirmation(int orderHeaderId)
         {
 

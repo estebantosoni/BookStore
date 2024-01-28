@@ -3,9 +3,12 @@ using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BulkyWeb.Areas.Customer.Controllers
 {
@@ -23,7 +26,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"Category");
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"Category,ProductImages");
             return View(productList);
         }
 
@@ -31,7 +34,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
         {
             ShoppingCart cart = new()
             {
-                Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
+                Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category,ProductImages"),
                 Count = 1,
                 ProductId = productId
             };
@@ -42,9 +45,9 @@ namespace BulkyWeb.Areas.Customer.Controllers
         [Authorize]
         public IActionResult Details(ShoppingCart cart)
         {
-            //Obtiene al usuario autenticado
+            //obtain authenticated user
             var claimsIdentity = (ClaimsIdentity)User.Identity;
-            //Obtiene el id del usuario
+            //obtain id user
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             cart.ApplicationUserId = userId;
 
@@ -53,9 +56,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
             if (cartFromDb != null)
             {
-                // si el producto ya fue añadido al carro,
-                // no se crea un nuevo registro en la db,
-                // sino que solo se actualiza el contador
+                //if the product has already been added to the cart, a new record is not created in the db, but only the counter is updated
                 cartFromDb.Count += cart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
                 _unitOfWork.Save();

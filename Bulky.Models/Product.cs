@@ -26,6 +26,7 @@ namespace Bulky.Models
         [Range(1,1000)]
         public double ListPrice { get; set; }
 
+        //1-50 are the number of units of the same product
         [Required]
         [Display(Name = "Price for 1-50")]
         [Range(1, 1000)]
@@ -48,6 +49,6 @@ namespace Bulky.Models
         public Category Category { get; set; }
 
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

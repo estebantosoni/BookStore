@@ -26,7 +26,7 @@ namespace Bulky.Models
         public Product Product { get; set; }
 
         public int Count { get; set; }
-        //el precio es agregado aquí por si en un futuro el precio cambia
+        //The price is added here if it changes in the future
         public double Price { get; set; }
 
     }

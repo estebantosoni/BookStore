@@ -30,7 +30,7 @@ namespace Bulky.DataAccess.DbInitializer
 
         public void Initialize()
         {
-            //generate migrations if they are not applied
+            //generate migrations (like changes in the database or create the database) if they are not applied
             try
             {
                 if(_dbContext.Database.GetPendingMigrations().Count() > 0)
@@ -52,7 +52,7 @@ namespace Bulky.DataAccess.DbInitializer
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
 
-                //finally, if roles are not created, then we will create admin user
+                //then, create the admin user
                 _userManager.CreateAsync(new ApplicationUser
                 {
                     UserName = "admin@gmail.com",

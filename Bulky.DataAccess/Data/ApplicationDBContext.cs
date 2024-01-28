@@ -19,18 +19,17 @@ namespace Bulky.DataAccess.Data
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<OrderHeader> OrderHeaders { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
-                new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
-                new Category { Id = 3, Name = "History", DisplayOrder = 3 }
-                );
         }
+
+
 
     }
 }

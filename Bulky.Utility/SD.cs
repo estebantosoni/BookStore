@@ -9,7 +9,7 @@ namespace Bulky.Utility
     public static class SD
     {
         public const string Role_Customer = "Customer";
-        //Usuario que tiene hasta 30 días (cuenta corriente?) para pagar. Es creado por el admin.
+        //User who has up to 30 days to pay. Created by admin.
         public const string Role_Company = "Company";
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Employee";

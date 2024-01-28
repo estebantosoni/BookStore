@@ -20,7 +20,7 @@ namespace Bulky.DataAccess.Repository
         {
             this._dbContext = dbContext;
 
-            //_dbContext.Categories == dbSet
+            //_dbContext.EntityName == dbSet
             this.dbSet = _dbContext.Set<T>();
             this._dbContext.Products.Include(u => u.Category).Include(u => u.CategoryId);
         }

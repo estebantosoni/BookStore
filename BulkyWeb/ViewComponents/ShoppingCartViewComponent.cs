@@ -9,6 +9,7 @@ namespace BulkyWeb.ViewComponents
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        //it's like a partial view
         public ShoppingCartViewComponent(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

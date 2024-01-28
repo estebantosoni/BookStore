@@ -11,7 +11,7 @@ namespace Bulky.Utility
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            //logic to send email
+            //TODO: logic to send email
             return Task.CompletedTask;
         }
     }
